@@ -3,8 +3,11 @@ work/
 .nextflow/
 .nextflow.log*
 
-# Pipeline outputs
+# Pipeline outputs and data directories
 pipeline_out*/
+CCLE/
+fastq/
+mergedFastq/
 
 # Large genomics files
 *.bam
