@@ -26,7 +26,7 @@ star_fusion_lib: /mctp/paroliaAnalysis/kevhu/genomes/GRCh38_CTAT_lib/GRCh38_genc
 
 # Arriba: database files bundled with the conda install
 # Verify path with: ls /mctp/share/users/kevhu/miniconda3/envs/arriba_env/share/
-arriba_lib: /mctp/share/users/kevhu/miniconda3/envs/arriba_env/share/arriba-2.5.1
+arriba_lib: /mctp/share/users/kevhu/miniconda3/envs/arriba_env/var/lib/arriba
 
 # ── Temporary directory ────────────────────────────────────────────────────────
 tmp_dir: /mctp/paroliaAnalysis/kevhu/tmp
