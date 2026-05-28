@@ -6,7 +6,7 @@
  * from params.arriba_lib via glob — version-agnostic.
  *
  * Install: conda install -c bioconda arriba
- * Database path: $CONDA_PREFIX/share/arriba-*/
+ * Database path: $CONDA_PREFIX/var/lib/arriba/
  */
 
 process ARRIBA {
