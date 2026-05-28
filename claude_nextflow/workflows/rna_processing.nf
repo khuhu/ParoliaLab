@@ -13,6 +13,7 @@ include { SAMTOOLS_SORT         } from '../modules/samtools/sort/main'
 include { PICARD_MARKDUPLICATES } from '../modules/picard/markduplicates/main'
 include { RNASEQC               } from '../modules/rnaseqc/main'
 include { STAR_FUSION           } from '../modules/star_fusion/main'
+include { ARRIBA                } from '../modules/arriba/main'
 
 workflow RNA_PROCESSING {
 
@@ -45,7 +46,11 @@ workflow RNA_PROCESSING {
 
     RNASEQC(ch_rnaseqc_input)
 
+    // ── Arriba fusion calling (uses deduplicated sorted BAM + index) ──────
+    ARRIBA(PICARD_MARKDUPLICATES.out.bam_bai)
+
     emit:
     gene_counts_gct = RNASEQC.out.gene_counts
     star_fusions    = STAR_FUSION.out.fusions
+    arriba_fusions  = ARRIBA.out.fusions
 }

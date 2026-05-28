@@ -13,10 +13,12 @@ process ARRIBA {
     tag "${meta.id}"
     label 'process_medium'
 
+    conda "/mctp/share/users/kevhu/miniconda3/envs/arriba_env"
+
     publishDir "${params.outdir}/rna_processing/arriba/${meta.id}", mode: 'copy'
 
     input:
-    tuple val(meta), path(bam)
+    tuple val(meta), path(bam), path(bai)
 
     output:
     tuple val(meta), path("${meta.id}.fusions.tsv"),           emit: fusions
@@ -24,8 +26,6 @@ process ARRIBA {
 
     script:
     """
-    samtools index ${bam}
-
     blacklist=\$(ls ${params.arriba_lib}/blacklist_hg38_GRCh38_v*.tsv.gz)
     known=\$(ls ${params.arriba_lib}/known_fusions_hg38_GRCh38_v*.tsv.gz)
     domains=\$(ls ${params.arriba_lib}/protein_domains_hg38_GRCh38_v*.gff3)

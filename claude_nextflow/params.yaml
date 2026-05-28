@@ -24,5 +24,9 @@ outdir: /mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipeline_out_claude
 # STAR-Fusion: CTAT genome library (GRCh38, download from STAR-Fusion GitHub releases)
 star_fusion_lib: /mctp/paroliaAnalysis/kevhu/genomes/GRCh38_CTAT_lib/GRCh38_gencode_v37_CTAT_lib_Mar012021.plug-n-play/ctat_genome_lib_build_dir
 
+# Arriba: database files bundled with the conda install
+# Verify path with: ls /mctp/share/users/kevhu/miniconda3/envs/arriba_env/share/
+arriba_lib: /mctp/share/users/kevhu/miniconda3/envs/arriba_env/share/arriba-2.5.1
+
 # ── Temporary directory ────────────────────────────────────────────────────────
 tmp_dir: /mctp/paroliaAnalysis/kevhu/tmp
