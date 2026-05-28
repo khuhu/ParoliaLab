@@ -1,0 +1,35 @@
+# Nextflow runtime — never commit these
+work/
+.nextflow/
+.nextflow.log*
+
+# Pipeline outputs
+pipeline_out*/
+
+# Large genomics files
+*.bam
+*.bai
+*.fastq.gz
+*.fq.gz
+*.fastq
+*.fq
+*.vcf
+*.vcf.gz
+*.bcf
+
+# Reference/index files
+*.fa
+*.fasta
+*.fa.fai
+*.dict
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

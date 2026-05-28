@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Parolia Lab Ewings Sarcoma RNA Pipeline — Parameter File
+# Launch with:
+#   nextflow run main.nf -params-file params.yaml
+# Override individual params at the command line: --param_name value
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Reference genomes ─────────────────────────────────────────────────────────
+star_index: /mctp/paroliaAnalysis/kevhu/genomes/hg38_rna/STAR_genome_GRCh38_noALT_noHLA_noDecoy_ERCC_v39_oh100/
+gtf: /mctp/paroliaAnalysis/kevhu/genomes/hg38_rna/gencode.v39.GRCh38.ERCC.genes.stranded.gtf
+
+# ── Sample sheet ──────────────────────────────────────────────────────────────
+# Tab-separated file; column used for sample IDs is 'Library ID'
+rna_samplesheet: /mctp/paroliaAnalysis/kevhu/misc/RNAseqLibraries_EwingSarcoma.txt
+
+# ── FASTQ input directory ──────────────────────────────────────────────────────
+# Files expected as: mctp_<Library ID>_R1.fq.gz / mctp_<Library ID>_R2.fq.gz
+rna_fastq_dir: /mctp/paroliaAnalysis/kevhu/EwingsSarcoma/mergedFastq
+
+# ── Output root ────────────────────────────────────────────────────────────────
+outdir: /mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipeline_out_claude
+
+# ── Fusion calling ────────────────────────────────────────────────────────────
+# STAR-Fusion: CTAT genome library (GRCh38, download from STAR-Fusion GitHub releases)
+star_fusion_lib: /mctp/paroliaAnalysis/kevhu/genomes/GRCh38_CTAT_lib/GRCh38_gencode_v37_CTAT_lib_Mar012021.plug-n-play/ctat_genome_lib_build_dir
+
+# ── Temporary directory ────────────────────────────────────────────────────────
+tmp_dir: /mctp/paroliaAnalysis/kevhu/tmp
