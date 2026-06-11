@@ -9,6 +9,10 @@ CCLE/
 fastq/
 mergedFastq/
 
+# pipelineFiles lives on the remote server only — ignore contents, keep the folder
+pipelineFiles/*
+!pipelineFiles/.gitkeep
+
 # Large genomics files
 *.bam
 *.bai
