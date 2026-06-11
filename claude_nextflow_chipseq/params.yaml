@@ -5,13 +5,13 @@ fastq_dir:    "/mctp/paroliaAnalysis/kevhu/chipseq/fastq"
 # Output
 outdir:       "/mctp/paroliaAnalysis/kevhu/chipseq/results"
 
-# Reference files (hg38) — all in eleanoyo's REF folder, mounted as /data2 in the chipimage Docker
-ref_dir:      "/mctp/share/users/eleanoyo/REF/hg38_path5_USE"
-chrom_sizes:  "/mctp/share/users/eleanoyo/REF/hg38_path5_USE/hg38.genome"
-blacklist_bed: "/mctp/share/users/eleanoyo/REF/hg38_path5_USE/FixBlacklist_ENCFF356LFX.bed"
+# Reference files — copy all of these into pipelineFiles before running
+ref_dir:      "/mctp/paroliaAnalysis/kevhu/pipelineFiles"
+chrom_sizes:  "/mctp/paroliaAnalysis/kevhu/pipelineFiles/hg38.genome"
+blacklist_bed: "/mctp/paroliaAnalysis/kevhu/pipelineFiles/FixBlacklist_ENCFF356LFX.bed"
 
 # IgG control BAM for MACS2 peak calling (update per experiment)
-igg_bam:      "/mctp/share/users/eleanoyo/REF/hg38_path5_USE/SI_40572_VCaP_DMSO_IgG_aligned_PCRDupes.bam"
+igg_bam:      "/mctp/paroliaAnalysis/kevhu/pipelineFiles/SI_40572_VCaP_DMSO_IgG_aligned_PCRDupes.bam"
 
 # Trimmomatic adapter file
-trimmomatic_adapters: "/mctp/share/users/eleanoyo/Software/trimmomatic/adapters/TruSeq3-PE-2.fa"
+trimmomatic_adapters: "/mctp/paroliaAnalysis/kevhu/pipelineFiles/TruSeq3-PE-2.fa"
