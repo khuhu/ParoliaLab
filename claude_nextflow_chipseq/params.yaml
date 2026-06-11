@@ -1,5 +1,5 @@
 # Input
-samplesheet:  "/mctp/paroliaAnalysis/kevhu/chipseq/ChipSeqLibraries_EwingSarcoma.csv"
+samplesheet:  "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/ChipSeqLibraries_EwingSarcoma.csv"
 fastq_dir:    "/mctp/paroliaAnalysis/kevhu/chipseq/fastq"
 
 # Output
