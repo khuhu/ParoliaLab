@@ -1,7 +1,7 @@
 process SAMTOOLS_FLAGSTAT {
     tag "${id}"
     label 'process_low'
-    container 'eleanoyo/chipimage:latest'
+    container 'chipimage:latest'
 
     publishDir { "${params.outdir}/${id}/flagstat" }, mode: 'copy'
 

@@ -1,7 +1,7 @@
 process PICARD_MARKDUPLICATES {
     tag "${id}"
     label 'process_high_memory'
-    container 'eleanoyo/chipimage:latest'
+    container 'chipimage:latest'
 
     publishDir { "${params.outdir}/${id}/picard" }, mode: 'copy', pattern: "*.txt"
 

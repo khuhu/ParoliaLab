@@ -1,7 +1,7 @@
 process BEDTOOLS_BLACKLIST {
     tag "${id}"
     label 'process_low'
-    container 'eleanoyo/chipimage:latest'
+    container 'chipimage:latest'
 
     publishDir { "${params.outdir}/${id}/peaks" }, mode: 'copy'
 

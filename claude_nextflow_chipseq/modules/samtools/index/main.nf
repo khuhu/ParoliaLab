@@ -1,7 +1,7 @@
 process SAMTOOLS_INDEX {
     tag "${id}"
     label 'process_low'
-    container 'eleanoyo/chipimage:latest'
+    container 'chipimage:latest'
 
     input:
     tuple val(id), path(bam)

@@ -1,7 +1,7 @@
 process SAMTOOLS_SORT_FILTER {
     tag "${id}"
     label 'process_medium'
-    container 'eleanoyo/chipimage:latest'
+    container 'chipimage:latest'
 
     input:
     tuple val(id), path(sam)

@@ -1,7 +1,7 @@
 process WIGTOBIGWIG {
     tag "${id}"
     label 'process_low'
-    container 'eleanoyo/chipimage:latest'
+    container 'chipimage:latest'
 
     publishDir { "${params.outdir}/${id}/bigwig" }, mode: 'copy'
 

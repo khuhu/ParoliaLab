@@ -1,7 +1,7 @@
 process BWA_ALIGN {
     tag "${id}"
     label 'process_high'
-    container 'eleanoyo/chipimage:latest'
+    container 'chipimage:latest'
 
     input:
     tuple val(id), path(r1), path(r2)
