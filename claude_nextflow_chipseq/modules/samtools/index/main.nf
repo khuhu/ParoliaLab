@@ -11,6 +11,6 @@ process SAMTOOLS_INDEX {
 
     script:
     """
-    samtools index ${bam}
+    samtools index -@ ${task.cpus} ${bam}
     """
 }

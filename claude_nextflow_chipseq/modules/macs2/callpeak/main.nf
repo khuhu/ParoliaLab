@@ -1,6 +1,6 @@
 process MACS2_CALLPEAK {
     tag "${id}"
-    label 'process_medium'
+    label 'process_low'
     container 'eleanoyo/chipimage:latest'
 
     publishDir "${params.outdir}/${id}/macs2", mode: 'copy'

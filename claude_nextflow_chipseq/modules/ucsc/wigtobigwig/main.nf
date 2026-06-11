@@ -1,5 +1,3 @@
-// ref_dir is mounted as /data2 via containerOptions in nextflow.config
-// chrom_sizes is also passed as a staged input for flexibility
 process WIGTOBIGWIG {
     tag "${id}"
     label 'process_low'

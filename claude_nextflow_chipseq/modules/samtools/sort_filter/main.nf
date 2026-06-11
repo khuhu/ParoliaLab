@@ -10,8 +10,9 @@ process SAMTOOLS_SORT_FILTER {
     tuple val(id), path("${id}_filtered_sorted_aligned.sam"), emit: filtered_sam
 
     script:
+    def mem_per_thread = (task.memory.mega / task.cpus).intValue()
     """
-    samtools sort ${sam} -o ${id}_sorted_aligned.sam
-    samtools view -hq 20 ${id}_sorted_aligned.sam -o ${id}_filtered_sorted_aligned.sam
+    samtools sort -@ ${task.cpus} -m ${mem_per_thread}M ${sam} -o ${id}_sorted_aligned.sam
+    samtools view -@ ${task.cpus} -hq 20 ${id}_sorted_aligned.sam -o ${id}_filtered_sorted_aligned.sam
     """
 }

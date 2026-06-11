@@ -13,13 +13,13 @@ process PICARD_MARKDUPLICATES {
     path("${id}_Aligned_Sorted_PCRDupes.txt"),               emit: metrics
 
     script:
+    def jvm_mem = (task.memory.mega * 0.8).intValue()
     """
-    java -jar /picard/build/libs/picard.jar MarkDuplicates \\
+    java -Xmx${jvm_mem}m -jar /picard/build/libs/picard.jar MarkDuplicates \\
         -INPUT ${filtered_sam} \\
         -OUTPUT ${id}_aligned_PCRDupes.bam \\
         -ASSUME_SORTED true \\
         -METRICS_FILE ${id}_Aligned_Sorted_PCRDupes.txt \\
         -VALIDATION_STRINGENCY SILENT
-    echo "${id} picard finished \$(date)" >> Log.log
     """
 }
