@@ -1,9 +1,9 @@
 # Input
 samplesheet:  "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/ChipSeqLibraries_EwingSarcoma.csv"
-fastq_dir:    "/mctp/paroliaAnalysis/kevhu/chipseq/fastq"
+fastq_dir:    "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/fastq"
 
 # Output
-outdir:       "/mctp/paroliaAnalysis/kevhu/chipseq/results"
+outdir:       "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipeline_out_claude_chipseq"
 
 # Reference files — copy all of these into pipelineFiles before running
 ref_dir:      "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles"
