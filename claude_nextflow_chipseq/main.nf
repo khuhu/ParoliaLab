@@ -8,7 +8,7 @@ workflow {
         .fromPath(params.samplesheet)
         .splitCsv(header: true)
         .map { row ->
-            def id = row.sample_id
+            def id = row.library_id
             def fastq_dir = file(params.fastq_dir)
             def r1_files = fastq_dir.listFiles().findAll {
                 it.name =~ /.*${id}.*_1\.fq\.gz$/
