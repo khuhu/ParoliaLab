@@ -6,12 +6,12 @@ fastq_dir:    "/mctp/paroliaAnalysis/kevhu/chipseq/fastq"
 outdir:       "/mctp/paroliaAnalysis/kevhu/chipseq/results"
 
 # Reference files — copy all of these into pipelineFiles before running
-ref_dir:      "/mctp/paroliaAnalysis/kevhu/pipelineFiles"
-chrom_sizes:  "/mctp/paroliaAnalysis/kevhu/pipelineFiles/hg38.genome"
-blacklist_bed: "/mctp/paroliaAnalysis/kevhu/pipelineFiles/FixBlacklist_ENCFF356LFX.bed"
+ref_dir:      "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles"
+chrom_sizes:  "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/hg38.genome"
+blacklist_bed: "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/FixBlacklist_ENCFF356LFX.bed"
 
 # IgG control BAM for MACS2 peak calling (update per experiment)
-igg_bam:      "/mctp/paroliaAnalysis/kevhu/pipelineFiles/SI_40572_VCaP_DMSO_IgG_aligned_PCRDupes.bam"
+igg_bam:      "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/SI_40572_VCaP_DMSO_IgG_aligned_PCRDupes.bam"
 
 # Trimmomatic adapter file
-trimmomatic_adapters: "/mctp/paroliaAnalysis/kevhu/pipelineFiles/TruSeq3-PE-2.fa"
+trimmomatic_adapters: "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/TruSeq3-PE-2.fa"

@@ -17,16 +17,17 @@ workflow CHIPSEQ_PROCESSING {
     raw_fastq_ch  // [sample_id, [r1_files], [r2_files]]
 
     main:
-    def adapters   = Channel.fromPath(params.trimmomatic_adapters).first()
-    def igg_bam    = Channel.fromPath(params.igg_bam).first()
-    def blacklist  = Channel.fromPath(params.blacklist_bed).first()
+    def adapters    = Channel.fromPath(params.trimmomatic_adapters).first()
+    def ref_dir     = Channel.fromPath(params.ref_dir).first()
+    def igg_bam     = Channel.fromPath(params.igg_bam).first()
+    def blacklist   = Channel.fromPath(params.blacklist_bed).first()
     def chrom_sizes = Channel.fromPath(params.chrom_sizes).first()
 
     MERGE_LANES(raw_fastq_ch)
 
     TRIMMOMATIC(MERGE_LANES.out.merged_fastq, adapters)
 
-    BWA_ALIGN(TRIMMOMATIC.out.trimmed_fastq)
+    BWA_ALIGN(TRIMMOMATIC.out.trimmed_fastq, ref_dir)
 
     SAMTOOLS_SORT_FILTER(BWA_ALIGN.out.sam)
 
