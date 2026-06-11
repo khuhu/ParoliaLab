@@ -1,8 +1,7 @@
-// Trimmomatic is NOT in eleanoyo/chipimage — uses a separate biocontainer
 process TRIMMOMATIC {
     tag "${id}"
     label 'process_medium'
-    container 'quay.io/biocontainers/trimmomatic:0.39--hdfd78af_2'
+    conda '/mctp/share/users/kevhu/miniconda3/envs/trimmomatic_env'
 
     publishDir { "${params.outdir}/${id}/trimmomatic" }, mode: 'copy', pattern: "*.log"
 
