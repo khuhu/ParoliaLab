@@ -3,7 +3,7 @@ process BEDTOOLS_BLACKLIST {
     label 'process_low'
     container 'eleanoyo/chipimage:latest'
 
-    publishDir "${params.outdir}/${id}/peaks", mode: 'copy'
+    publishDir { "${params.outdir}/${id}/peaks" }, mode: 'copy'
 
     input:
     tuple val(id), path(narrowpeak)

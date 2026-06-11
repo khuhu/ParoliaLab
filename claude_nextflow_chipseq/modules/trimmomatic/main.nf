@@ -4,7 +4,7 @@ process TRIMMOMATIC {
     label 'process_medium'
     container 'quay.io/biocontainers/trimmomatic:0.39--hdfd78af_2'
 
-    publishDir "${params.outdir}/${id}/trimmomatic", mode: 'copy', pattern: "*.log"
+    publishDir { "${params.outdir}/${id}/trimmomatic" }, mode: 'copy', pattern: "*.log"
 
     input:
     tuple val(id), path(r1), path(r2)

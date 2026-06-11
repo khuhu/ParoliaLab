@@ -3,7 +3,7 @@ process SAMTOOLS_FLAGSTAT {
     label 'process_low'
     container 'eleanoyo/chipimage:latest'
 
-    publishDir "${params.outdir}/${id}/flagstat", mode: 'copy'
+    publishDir { "${params.outdir}/${id}/flagstat" }, mode: 'copy'
 
     input:
     tuple val(id), path(bam)

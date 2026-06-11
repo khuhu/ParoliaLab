@@ -3,7 +3,7 @@ process MACS2_CALLPEAK {
     label 'process_low'
     container 'eleanoyo/chipimage:latest'
 
-    publishDir "${params.outdir}/${id}/macs2", mode: 'copy'
+    publishDir { "${params.outdir}/${id}/macs2" }, mode: 'copy'
 
     input:
     tuple val(id), path(bam), path(bai)

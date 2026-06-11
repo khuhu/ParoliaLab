@@ -3,7 +3,7 @@ process WIGTOBIGWIG {
     label 'process_low'
     container 'eleanoyo/chipimage:latest'
 
-    publishDir "${params.outdir}/${id}/bigwig", mode: 'copy'
+    publishDir { "${params.outdir}/${id}/bigwig" }, mode: 'copy'
 
     input:
     tuple val(id), path(bdg)
