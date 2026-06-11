@@ -11,10 +11,10 @@ workflow {
             def id = row.library_id
             def fastq_dir = file(params.fastq_dir)
             def r1_files = fastq_dir.listFiles().findAll {
-                it.name =~ /.*${id}.*_1\.fq\.gz$/
+                it.name.contains(id) && it.name.endsWith('_1.fq.gz')
             }.sort()
             def r2_files = fastq_dir.listFiles().findAll {
-                it.name =~ /.*${id}.*_2\.fq\.gz$/
+                it.name.contains(id) && it.name.endsWith('_2.fq.gz')
             }.sort()
             if (!r1_files) error "No R1 FASTQ files found for sample ${id} in ${params.fastq_dir}"
             if (!r2_files) error "No R2 FASTQ files found for sample ${id} in ${params.fastq_dir}"
