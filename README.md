@@ -47,11 +47,15 @@ echo "library_id" > ChipSeqLibraries_EwingSarcoma.csv
 ls *.fq.gz | grep -oP 'SI_\d+' | sort -u >> ChipSeqLibraries_EwingSarcoma.csv
 ```
 
-**Reference files** — Sourced from Eleanor's REF directory and copied into `pipelineFiles/` (gitignored — lives on the server only). Files needed:
+**Reference files** — Copied from Eleanor's directories into `pipelineFiles/` (gitignored — lives on the server only).
+
+From `/mctp/share/users/eleanoyo/REF/hg38_path5_USE/`:
 - `genome.fa` + BWA index files (`.amb .ann .bwt .pac .sa`)
 - `hg38.genome` (chromosome sizes)
 - `FixBlacklist_ENCFF356LFX.bed`
 - `SI_40572_VCaP_DMSO_IgG_aligned_PCRDupes.bam` + `.bai` (IgG control for MACS2)
+
+From `/mctp/share/users/eleanoyo/Software/trimmomatic/adapters/`:
 - `TruSeq3-PE-2.fa` (Trimmomatic adapters)
 
 **Docker** — ChIP-seq uses `chipimage:latest` (loaded from tar). Trimmomatic uses a local conda environment (`trimmomatic_env`).
