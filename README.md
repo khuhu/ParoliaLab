@@ -58,7 +58,10 @@ From `/mctp/share/users/eleanoyo/REF/hg38_path5_USE/`:
 From `/mctp/share/users/eleanoyo/Software/trimmomatic/adapters/`:
 - `TruSeq3-PE-2.fa` (Trimmomatic adapters)
 
-**Docker** — ChIP-seq uses `chipimage:latest` (loaded from tar). Trimmomatic uses a local conda environment (`trimmomatic_env`).
+**Docker** — ChIP-seq alignment and processing uses `chipimage:latest`, Eleanor's Docker image (obtain tar from her and load with `docker load -i chipimage.tar`). Trimmomatic runs outside Docker via a local conda environment (`trimmomatic_env`, Trimmomatic v0.39):
+```bash
+conda create -n trimmomatic_env -c bioconda -c conda-forge trimmomatic=0.39 -y
+```
 
 ---
 
