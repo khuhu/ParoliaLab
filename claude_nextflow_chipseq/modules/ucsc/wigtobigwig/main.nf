@@ -1,6 +1,6 @@
 process WIGTOBIGWIG {
     tag "${id}"
-    label 'process_low'
+    label 'process_medium'
     container 'chipimage:latest'
 
     publishDir { "${params.outdir}/${id}/bigwig" }, mode: 'copy'
