@@ -11,6 +11,7 @@ include { MACS2_CALLPEAK        } from '../modules/macs2/callpeak/main.nf'
 include { BEDTOOLS_BLACKLIST    } from '../modules/bedtools/blacklist_filter/main.nf'
 include { WIGTOBIGWIG           } from '../modules/ucsc/wigtobigwig/main.nf'
 include { SAMTOOLS_FLAGSTAT     } from '../modules/samtools/flagstat/main.nf'
+include { DEEPTOOLS_FINGERPRINT } from '../modules/deeptools/fingerprint/main.nf'
 
 workflow CHIPSEQ_PROCESSING {
     take:
@@ -34,6 +35,8 @@ workflow CHIPSEQ_PROCESSING {
     PICARD_MARKDUPLICATES(SAMTOOLS_SORT_FILTER.out.filtered_sam)
 
     SAMTOOLS_INDEX(PICARD_MARKDUPLICATES.out.bam)
+
+    DEEPTOOLS_FINGERPRINT(SAMTOOLS_INDEX.out.indexed_bam, igg_bam)
 
     MACS2_CALLPEAK(SAMTOOLS_INDEX.out.indexed_bam, igg_bam)
 
