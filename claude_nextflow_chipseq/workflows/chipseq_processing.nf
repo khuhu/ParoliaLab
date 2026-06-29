@@ -12,6 +12,7 @@ include { BEDTOOLS_BLACKLIST    } from '../modules/bedtools/blacklist_filter/mai
 include { WIGTOBIGWIG           } from '../modules/ucsc/wigtobigwig/main.nf'
 include { SAMTOOLS_FLAGSTAT     } from '../modules/samtools/flagstat/main.nf'
 include { DEEPTOOLS_FINGERPRINT } from '../modules/deeptools/fingerprint/main.nf'
+include { PHANTOMPEAKQUALTOOLS  } from '../modules/phantompeakqualtools/main.nf'
 
 workflow CHIPSEQ_PROCESSING {
     take:
@@ -37,6 +38,8 @@ workflow CHIPSEQ_PROCESSING {
     SAMTOOLS_INDEX(PICARD_MARKDUPLICATES.out.bam)
 
     DEEPTOOLS_FINGERPRINT(SAMTOOLS_INDEX.out.indexed_bam, igg_bam)
+
+    PHANTOMPEAKQUALTOOLS(SAMTOOLS_INDEX.out.indexed_bam)
 
     MACS2_CALLPEAK(SAMTOOLS_INDEX.out.indexed_bam, igg_bam)
 
