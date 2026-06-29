@@ -3,7 +3,7 @@ process SAMTOOLS_FLAGSTAT {
     label 'process_low'
     container 'chipimage:latest'
 
-    publishDir { "${params.outdir}/${id}/flagstat" }, mode: 'copy'
+    storeDir "${params.outdir}/${id}/flagstat"
 
     input:
     tuple val(id), path(bam)

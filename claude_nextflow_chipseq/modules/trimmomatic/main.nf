@@ -3,7 +3,7 @@ process TRIMMOMATIC {
     label 'process_medium'
     conda '/mctp/share/users/kevhu/miniconda3/envs/trimmomatic_env'
 
-    publishDir { "${params.outdir}/${id}/trimmomatic" }, mode: 'copy', pattern: "*.log"
+    storeDir "${params.outdir}/${id}/trimmomatic"
 
     input:
     tuple val(id), path(r1), path(r2)

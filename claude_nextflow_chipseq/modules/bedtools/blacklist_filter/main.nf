@@ -1,22 +1,22 @@
 process BEDTOOLS_BLACKLIST {
-    tag "${id}"
+    tag "${id}:${peak_type}"
     label 'process_low'
     container 'chipimage:latest'
 
-    publishDir { "${params.outdir}/${id}/peaks" }, mode: 'copy'
+    storeDir "${params.outdir}/${id}/peaks"
 
     input:
-    tuple val(id), path(narrowpeak)
+    tuple val(id), val(peak_type), path(peaks)
     path blacklist_bed
 
     output:
-    tuple val(id), path("${id}_NarrowPeakNoBL.bed"), emit: filtered_bed
+    tuple val(id), path("${id}_PeaksNoBL.bed"), emit: filtered_bed
 
     script:
     """
     bedtools intersect -v \\
-        -a ${narrowpeak} \\
+        -a ${peaks} \\
         -b ${blacklist_bed} \\
-        > ${id}_NarrowPeakNoBL.bed
+        > ${id}_PeaksNoBL.bed
     """
 }

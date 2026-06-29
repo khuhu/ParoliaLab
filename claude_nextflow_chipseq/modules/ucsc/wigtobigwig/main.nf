@@ -3,7 +3,7 @@ process WIGTOBIGWIG {
     label 'process_medium'
     container 'chipimage:latest'
 
-    publishDir { "${params.outdir}/${id}/bigwig" }, mode: 'copy'
+    storeDir "${params.outdir}/${id}/bigwig"
 
     input:
     tuple val(id), path(bdg)

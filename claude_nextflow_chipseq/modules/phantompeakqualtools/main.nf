@@ -3,7 +3,7 @@ process PHANTOMPEAKQUALTOOLS {
     label 'process_medium'
     container 'quay.io/biocontainers/phantompeakqualtools:1.2.2--0'
 
-    publishDir { "${params.outdir}/${id}/phantompeakqualtools" }, mode: 'copy'
+    storeDir "${params.outdir}/${id}/phantompeakqualtools"
 
     input:
     tuple val(id), path(bam), path(bai)

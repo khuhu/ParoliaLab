@@ -9,6 +9,7 @@ workflow {
         .splitCsv(header: true)
         .map { row ->
             def id = row.library_id
+            def peak_type = row.containsKey('peak_type') ? row.peak_type : 'narrow'
             def fastq_dir = file(params.fastq_dir)
             def r1_files = fastq_dir.listFiles().findAll {
                 it.name.contains(id) && it.name.endsWith('_1.fq.gz')
@@ -18,7 +19,7 @@ workflow {
             }.sort()
             if (!r1_files) error "No R1 FASTQ files found for sample ${id} in ${params.fastq_dir}"
             if (!r2_files) error "No R2 FASTQ files found for sample ${id} in ${params.fastq_dir}"
-            tuple(id, r1_files, r2_files)
+            tuple(id, peak_type, r1_files, r2_files)
         }
         .set { raw_fastq_ch }
 

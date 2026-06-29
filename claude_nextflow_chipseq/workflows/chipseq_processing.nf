@@ -16,7 +16,7 @@ include { PHANTOMPEAKQUALTOOLS  } from '../modules/phantompeakqualtools/main.nf'
 
 workflow CHIPSEQ_PROCESSING {
     take:
-    raw_fastq_ch  // [sample_id, [r1_files], [r2_files]]
+    raw_fastq_ch  // [sample_id, peak_type, [r1_files], [r2_files]]
 
     main:
     def adapters    = Channel.fromPath(params.trimmomatic_adapters).first()
@@ -25,7 +25,11 @@ workflow CHIPSEQ_PROCESSING {
     def blacklist   = Channel.fromPath(params.blacklist_bed).first()
     def chrom_sizes = Channel.fromPath(params.chrom_sizes).first()
 
-    MERGE_LANES(raw_fastq_ch)
+    // Split peak_type into its own channel; intermediate modules only need [id, ...]
+    peak_type_ch = raw_fastq_ch.map { id, peak_type, r1, r2 -> tuple(id, peak_type) }
+    fastq_ch     = raw_fastq_ch.map { id, peak_type, r1, r2 -> tuple(id, r1, r2) }
+
+    MERGE_LANES(fastq_ch)
 
     TRIMMOMATIC(MERGE_LANES.out.merged_fastq, adapters)
 
@@ -41,11 +45,16 @@ workflow CHIPSEQ_PROCESSING {
 
     PHANTOMPEAKQUALTOOLS(SAMTOOLS_INDEX.out.indexed_bam)
 
-    MACS2_CALLPEAK(SAMTOOLS_INDEX.out.indexed_bam, igg_bam)
+    SAMTOOLS_FLAGSTAT(PICARD_MARKDUPLICATES.out.bam)
 
-    BEDTOOLS_BLACKLIST(MACS2_CALLPEAK.out.narrowpeak, blacklist)
+    // Rejoin peak_type before MACS2
+    macs2_input = SAMTOOLS_INDEX.out.indexed_bam
+        .join(peak_type_ch)
+        .map { id, bam, bai, peak_type -> tuple(id, peak_type, bam, bai) }
+
+    MACS2_CALLPEAK(macs2_input, igg_bam)
+
+    BEDTOOLS_BLACKLIST(MACS2_CALLPEAK.out.peaks, blacklist)
 
     WIGTOBIGWIG(MACS2_CALLPEAK.out.bdg, chrom_sizes)
-
-    SAMTOOLS_FLAGSTAT(PICARD_MARKDUPLICATES.out.bam)
 }

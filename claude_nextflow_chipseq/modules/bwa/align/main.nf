@@ -3,6 +3,8 @@ process BWA_ALIGN {
     label 'process_high'
     container 'chipimage:latest'
 
+    storeDir "${params.outdir}/${id}/bwa"
+
     input:
     tuple val(id), path(r1), path(r2)
     path ref_dir

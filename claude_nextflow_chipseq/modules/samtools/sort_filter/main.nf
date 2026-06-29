@@ -3,6 +3,8 @@ process SAMTOOLS_SORT_FILTER {
     label 'process_medium'
     container 'chipimage:latest'
 
+    storeDir "${params.outdir}/${id}/samtools"
+
     input:
     tuple val(id), path(sam)
 

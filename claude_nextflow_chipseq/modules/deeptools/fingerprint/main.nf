@@ -3,7 +3,7 @@ process DEEPTOOLS_FINGERPRINT {
     label 'process_medium'
     container 'chipimage:latest'
 
-    publishDir { "${params.outdir}/${id}/deeptools" }, mode: 'copy'
+    storeDir "${params.outdir}/${id}/deeptools"
 
     input:
     tuple val(id), path(bam), path(bai)

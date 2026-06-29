@@ -3,7 +3,7 @@ process PICARD_MARKDUPLICATES {
     label 'process_high_memory'
     container 'chipimage:latest'
 
-    publishDir { "${params.outdir}/${id}/picard" }, mode: 'copy', pattern: "*.txt"
+    storeDir "${params.outdir}/${id}/picard"
 
     input:
     tuple val(id), path(filtered_sam)
