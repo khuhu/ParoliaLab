@@ -8,6 +8,7 @@ process DEEPTOOLS_FINGERPRINT {
     input:
     tuple val(id), path(bam), path(bai)
     path igg_bam
+    path igg_bai
 
     output:
     tuple val(id), path("${id}_fingerprint.png"),    emit: plot

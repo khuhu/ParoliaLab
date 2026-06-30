@@ -12,6 +12,7 @@ blacklist_bed: "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/FixBlack
 
 # IgG control BAM for MACS2 peak calling (update per experiment)
 igg_bam:      "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/SI_40572_VCaP_DMSO_IgG_aligned_PCRDupes.bam"
+igg_bai:      "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/SI_40572_VCaP_DMSO_IgG_aligned_PCRDupes.bam.bai"
 
 # Trimmomatic adapter file
 trimmomatic_adapters: "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/TruSeq3-PE-2.fa"

@@ -22,6 +22,7 @@ workflow CHIPSEQ_PROCESSING {
     def adapters    = Channel.fromPath(params.trimmomatic_adapters).first()
     def ref_dir     = Channel.fromPath(params.ref_dir).first()
     def igg_bam     = Channel.fromPath(params.igg_bam).first()
+    def igg_bai     = Channel.fromPath(params.igg_bai).first()
     def blacklist   = Channel.fromPath(params.blacklist_bed).first()
     def chrom_sizes = Channel.fromPath(params.chrom_sizes).first()
 
@@ -41,7 +42,7 @@ workflow CHIPSEQ_PROCESSING {
 
     SAMTOOLS_INDEX(PICARD_MARKDUPLICATES.out.bam)
 
-    DEEPTOOLS_FINGERPRINT(SAMTOOLS_INDEX.out.indexed_bam, igg_bam)
+    DEEPTOOLS_FINGERPRINT(SAMTOOLS_INDEX.out.indexed_bam, igg_bam, igg_bai)
 
     PHANTOMPEAKQUALTOOLS(SAMTOOLS_INDEX.out.indexed_bam)
 
