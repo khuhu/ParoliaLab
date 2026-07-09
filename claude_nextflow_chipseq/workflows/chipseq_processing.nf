@@ -2,6 +2,7 @@
 nextflow.enable.dsl=2
 
 include { MERGE_LANES           } from '../modules/merge_lanes/main.nf'
+include { FASTQC                } from '../modules/fastqc/main.nf'
 include { TRIMMOMATIC           } from '../modules/trimmomatic/main.nf'
 include { BWA_ALIGN             } from '../modules/bwa/align/main.nf'
 include { SAMTOOLS_SORT_FILTER  } from '../modules/samtools/sort_filter/main.nf'
@@ -31,6 +32,8 @@ workflow CHIPSEQ_PROCESSING {
     fastq_ch     = raw_fastq_ch.map { id, peak_type, r1, r2 -> tuple(id, r1, r2) }
 
     MERGE_LANES(fastq_ch)
+
+    FASTQC(MERGE_LANES.out.merged_fastq)
 
     TRIMMOMATIC(MERGE_LANES.out.merged_fastq, adapters)
 

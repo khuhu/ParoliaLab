@@ -16,3 +16,6 @@ igg_bai:      "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/SI_40572_
 
 # Trimmomatic adapter file
 trimmomatic_adapters: "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/TruSeq3-PE-2.fa"
+
+# Conda environments
+fastqc_env: "/mctp/share/users/kevhu/miniconda3/envs/fastqc_env"
