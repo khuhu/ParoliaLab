@@ -6,6 +6,7 @@ include { FASTQC                } from '../modules/fastqc/main.nf'
 include { TRIMMOMATIC           } from '../modules/trimmomatic/main.nf'
 include { BWA_ALIGN             } from '../modules/bwa/align/main.nf'
 include { SAMTOOLS_SORT_FILTER  } from '../modules/samtools/sort_filter/main.nf'
+include { BEDTOOLS_PBC          } from '../modules/bedtools/pbc/main.nf'
 include { PICARD_MARKDUPLICATES } from '../modules/picard/markduplicates/main.nf'
 include { SAMTOOLS_INDEX        } from '../modules/samtools/index/main.nf'
 include { MACS2_CALLPEAK        } from '../modules/macs2/callpeak/main.nf'
@@ -40,6 +41,8 @@ workflow CHIPSEQ_PROCESSING {
     BWA_ALIGN(TRIMMOMATIC.out.trimmed_fastq, ref_dir)
 
     SAMTOOLS_SORT_FILTER(BWA_ALIGN.out.sam)
+
+    BEDTOOLS_PBC(SAMTOOLS_SORT_FILTER.out.filtered_sam)
 
     PICARD_MARKDUPLICATES(SAMTOOLS_SORT_FILTER.out.filtered_sam)
 
