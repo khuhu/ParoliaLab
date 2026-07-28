@@ -22,6 +22,7 @@ RUN pip3 install --break-system-packages cooler
 RUN git clone https://github.com/dovetail-genomics/HiChiP.git
 RUN chmod +x ./HiChiP/enrichment_stats.sh
 RUN chmod +x ./HiChiP/installDep.sh
+RUN sed -i 's/\bliblz4-tool\b//g' ./HiChiP/installDep.sh
 RUN ./HiChiP/installDep.sh
 
 #Juicer , needs timezone input install instance or make silent dependancies??
