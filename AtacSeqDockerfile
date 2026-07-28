@@ -16,8 +16,6 @@ RUN pip3 install --break-system-packages numpy
 RUN pip3 install --break-system-packages pandas
 RUN pip3 install --break-system-packages h5py
 RUN pip3 install --break-system-packages cooler
-RUN pip3 install --break-system-packages "cython<3"
-RUN pip3 install --break-system-packages --no-build-isolation MACS2
 #RUN pip3 install deeptools
 
 #Get package

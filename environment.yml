@@ -21,3 +21,4 @@ dependencies:
   - bowtie2=2.3.5
   - samtools=1.9
   - multiqc=1.8
+  - macs2=2.2.7.1
