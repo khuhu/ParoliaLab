@@ -1,0 +1,109 @@
+FROM ubuntu
+
+#home/kevhu/dockerset/atacimage
+#docker build -t atacimage2 .
+#docker run -idt -v /mctp/share/users/kevhu/SRA/Download:/data -v /home/kevhu/REF:/data2 atacimage2:latest /bin/bash
+
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y install python3-pip wget sudo git liblz4-tool lz4
+RUN pip3 install --upgrade pip
+RUN apt-get install -y rsync
+
+#python packages
+RUN pip3 install pysam
+RUN pip3 install tabulate 
+RUN pip3 install numpy 
+RUN pip3 install pandas 
+RUN pip3 install h5py
+RUN pip3 install cooler
+RUN pip3 install MACS2
+#RUN pip3 install deeptools
+
+#Get package
+RUN git clone https://github.com/dovetail-genomics/HiChiP.git
+RUN chmod +x ./HiChiP/enrichment_stats.sh
+RUN chmod +x ./HiChiP/installDep.sh
+RUN ./HiChiP/installDep.sh
+
+#Juicer , needs timezone input install instance or make silent dependancies??
+RUN wget https://s3.amazonaws.com/hicfiles.tc4ga.com/public/juicer/juicer_tools_1.22.01.jar
+RUN mv juicer_tools_1.22.01.jar ./HiChiP/juicertools.jar
+RUN sudo DEBIAN_FRONTEND=noninteractive apt --assume-yes install default-jre
+
+##Cooler
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install libhdf5-dev
+
+##KentUtils
+RUN mkdir kentUtils
+RUN rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./kentUtils/
+ENV PATH /kentUtils:$PATH
+
+#Pairix
+RUN git clone https://github.com/4dn-dcic/pairix
+RUN cd /pairix; make
+ENV PATH pairix/bin/:/pairix/util:pairix/util/bam2pairs:$PATH
+
+#Picard
+RUN git clone https://github.com/broadinstitute/picard.git
+RUN cd /picard; ./gradlew shadowJar; 
+# java -jar /picard/build/libs/picard.jar
+#ENV PATH picard/build/libs/:$PATH
+
+
+#FROM ubuntu
+RUN apt-get update && apt-get install -y git zip unzip
+# Install miniconda
+RUN wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh
+RUN sh Miniconda2-latest-Linux-x86_64.sh -b -f
+
+ENV PATH="/root/miniconda2/bin/:${PATH}"
+
+
+# Add bioconda
+RUN conda config --add channels defaults
+RUN conda config --add channels bioconda
+RUN conda config --add channels conda-forge
+
+
+# Install HiCPro dependencies
+RUN pip install pysam bx-python numpy scipy
+RUN conda install -y -c anaconda scipy 
+RUN conda install -y -c anaconda numpy 
+RUN conda install -y -c bcbio bx-python 
+RUN conda install -y -c bioconda pysam 
+
+
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh -O ~/anaconda.sh
+RUN bash ~/anaconda.sh -b -p /usr/local/anaconda
+RUN rm ~/anaconda.sh
+ENV PATH /usr/local/anaconda/bin:$PATH
+
+
+COPY ./environment.yml /
+RUN conda env create -f /environment.yml && conda clean -a
+ENV PATH /usr/local/anaconda/envs/atacimage_env/bin:$PATH
+
+
+## Install HiCPro
+RUN cd /tmp
+    #echo "devel.zip" | wget --base=http://github.com/nservant/HiC-Pro/archive/ -i - -O hicpro_latest.zip && \
+RUN git clone https://github.com/nservant/HiC-Pro.git
+RUN cd HiC-Pro && \
+	#unzip hicpro_latest.zip && \
+    #cd HiC-Pro-devel  && \ 
+    make configure prefix=/ && \
+    make install && \
+    cd .. 
+    #rm -fr HiC-Pro*
+ENV PATH /HiC-Pro_3.0.0/bin:$PATH 
+
+
+#RUN git clone https://github.com/usadellab/Trimmomatic.git
+
+# Add me as a user and give sudo privileges inside container
+RUN useradd -l -m -u 114269894 kevhu && \
+    echo kevhu:docker | chpasswd && \
+    adduser kevhu sudo
+
+USER kevhu

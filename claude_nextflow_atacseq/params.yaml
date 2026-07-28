@@ -1,0 +1,10 @@
+# Input
+samplesheet:  "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/AtacSeqLibraries_EwingSarcoma.csv"
+fastq_dir:    "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/atac_fastq"
+
+# Output
+outdir:       "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipeline_out_claude_atacseq"
+
+# Reference files
+ref_dir:      "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles"
+chrom_sizes:  "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipelineFiles/hg38.genome"
