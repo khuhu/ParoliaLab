@@ -27,7 +27,7 @@ RUN ./HiChiP/installDep.sh
 #Juicer , needs timezone input install instance or make silent dependancies??
 RUN wget https://s3.amazonaws.com/hicfiles.tc4ga.com/public/juicer/juicer_tools_1.22.01.jar
 RUN mv juicer_tools_1.22.01.jar ./HiChiP/juicertools.jar
-RUN sudo DEBIAN_FRONTEND=noninteractive apt --assume-yes install default-jre
+RUN sudo DEBIAN_FRONTEND=noninteractive apt --assume-yes install openjdk-17-jdk
 
 ##Cooler
 RUN sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install libhdf5-dev
