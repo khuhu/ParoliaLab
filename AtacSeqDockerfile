@@ -35,7 +35,10 @@ RUN sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install libhdf5-dev
 
 ##KentUtils
 RUN mkdir kentUtils
-RUN rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./kentUtils/
+RUN for i in 1 2 3 4 5; do \
+        rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./kentUtils/ && exit 0; \
+        echo "rsync attempt $i failed, retrying..."; sleep 10; \
+    done; exit 1
 ENV PATH /kentUtils:$PATH
 
 #Pairix
