@@ -1,6 +1,6 @@
 # Input
 samplesheet:  "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/AtacSeqLibraries_EwingSarcoma.csv"
-fastq_dir:    "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/atac_fastq"
+fastq_dir:    "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/fastq"
 
 # Output
 outdir:       "/mctp/paroliaAnalysis/kevhu/EwingsSarcoma/pipeline_out_claude_atacseq"
