@@ -81,8 +81,9 @@ RUN rm ~/anaconda.sh
 ENV PATH /usr/local/anaconda/bin:$PATH
 
 
+RUN conda install -n base -c conda-forge mamba -y
 COPY ./environment.yml /
-RUN conda env create -f /environment.yml && conda clean -a
+RUN mamba env create -f /environment.yml && conda clean -a
 ENV PATH /usr/local/anaconda/envs/atacimage_env/bin:$PATH
 
 
