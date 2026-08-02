@@ -17,6 +17,6 @@ process PICARD_COLLECTINSERTSIZEMETRICS {
     java -Xmx${jvm_mem}m -jar /picard/build/libs/picard.jar CollectInsertSizeMetrics \\
         -INPUT ${bam} \\
         -OUTPUT ${id}_size.txt \\
-        -HISTOGRAM_FILE ${id}_size.pdf
+        -H ${id}_size.pdf
     """
 }
