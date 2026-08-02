@@ -81,9 +81,9 @@ RUN rm ~/anaconda.sh
 ENV PATH /usr/local/anaconda/bin:$PATH
 
 
-RUN conda install -n base -c conda-forge mamba -y
+RUN wget -qO- https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C /usr/local bin/micromamba
 COPY ./environment.yml /
-RUN mamba env create -f /environment.yml && conda clean -a
+RUN /usr/local/bin/micromamba create -y -f /environment.yml -r /usr/local/anaconda && /usr/local/bin/micromamba clean -y -a
 ENV PATH /usr/local/anaconda/envs/atacimage_env/bin:$PATH
 
 
