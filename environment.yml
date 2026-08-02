@@ -9,7 +9,7 @@ dependencies:
   - scipy=1.4.1
   - numpy=1.18.1
   - iced=0.5.4
-  - bx-python
+  - pip
   - pysam=0.15.4
   - cooler=0.8.6
 

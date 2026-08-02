@@ -86,6 +86,9 @@ COPY ./environment.yml /
 RUN /usr/local/bin/micromamba create -y -f /environment.yml -r /usr/local/anaconda && /usr/local/bin/micromamba clean -y -a
 ENV PATH /usr/local/anaconda/envs/atacimage_env/bin:$PATH
 
+# conda/bioconda bx-python builds for python=3.7 require the now-gone python-lzo; PyPI's build doesn't
+RUN pip install bx-python
+
 
 ## Install HiCPro
 RUN cd /tmp
