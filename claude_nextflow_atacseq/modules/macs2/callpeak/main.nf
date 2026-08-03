@@ -1,7 +1,7 @@
 process MACS2_CALLPEAK {
     tag "${id}"
     label 'process_low'
-    container 'atacimage:latest'
+    container 'chipimage:latest'
 
     storeDir "${params.outdir}/${id}/macs2"
 
