@@ -87,7 +87,9 @@ RUN /usr/local/bin/micromamba create -y -f /environment.yml -r /usr/local/anacon
 ENV PATH /usr/local/anaconda/envs/atacimage_env/bin:$PATH
 
 # conda/bioconda bx-python builds for python=3.7 require the now-gone python-lzo; PyPI's build doesn't
-RUN pip install bx-python
+# pin numpy here too: bx-python's unpinned numpy dep otherwise upgrades numpy past what MACS2's
+# precompiled Cython extensions were built against, breaking macs2 with a numpy ABI size mismatch
+RUN pip install bx-python "numpy==1.18.1"
 
 
 ## Install HiCPro
