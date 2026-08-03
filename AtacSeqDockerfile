@@ -92,9 +92,11 @@ RUN pip install bx-python "numpy==1.18.1"
 # bioconda's macs2=2.2.7.1 build's Cython extensions were compiled against a newer numpy ABI
 # (ndarray struct grew by one field around numpy 1.20) than the numpy=1.18.1 pinned in
 # environment.yml for scipy/iced/cooler py3.7 compat, so macs2 raises a numpy ABI size mismatch
-# on import; reinstalling from the PyPI wheel (built numpy-ABI-forward-compatible) fixes it
-# without touching the pinned numpy
-RUN pip install --no-cache-dir --force-reinstall --no-deps MACS2==2.2.7.1
+# on import; rebuild from the PyPI sdist against the numpy already in this env to fix it.
+# --no-build-isolation is required: pip's isolated build step installs its own latest numpy
+# (1.21+), which both trips a version-string bug in MACS2's setup.py and would reintroduce the
+# same ABI mismatch by building against that newer numpy instead of the one pinned here
+RUN pip install --no-cache-dir --force-reinstall --no-deps --no-build-isolation MACS2==2.2.7.1
 
 
 ## Install HiCPro
