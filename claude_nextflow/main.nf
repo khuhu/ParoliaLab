@@ -1,5 +1,4 @@
 #!/usr/bin/env nextflow
-println "Hello from ParoliaLab git test"
 /*
  * Parolia Lab Ewings Sarcoma Pipeline — Main Entry Point
  *
