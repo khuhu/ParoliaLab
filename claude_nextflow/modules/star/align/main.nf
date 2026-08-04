@@ -9,7 +9,7 @@ process STAR_ALIGN {
     tag "${meta.id}"
     label 'process_medium'
 
-    publishDir "${params.outdir}/rna_processing/star/${meta.id}", mode: 'copy',
+    publishDir path: { "${params.outdir}/rna_processing/star/${meta.id}" }, mode: 'copy',
         saveAs: { filename ->
             filename.endsWith('Aligned.out.bam') ||
             filename.endsWith('Aligned.toTranscriptome.out.bam') ||

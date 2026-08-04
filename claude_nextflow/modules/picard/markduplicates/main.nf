@@ -9,7 +9,7 @@ process PICARD_MARKDUPLICATES {
     tag "${meta.id}"
     label 'process_high_memory'
 
-    publishDir "${params.outdir}/rna_processing/markdup/${meta.id}", mode: 'copy',
+    publishDir path: { "${params.outdir}/rna_processing/markdup/${meta.id}" }, mode: 'copy',
         saveAs: { filename ->
             filename.endsWith('.dedup.bam') ||
             filename.endsWith('.dedup.bai') ||

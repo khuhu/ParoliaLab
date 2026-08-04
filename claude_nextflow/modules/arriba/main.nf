@@ -15,7 +15,7 @@ process ARRIBA {
 
     conda "/mctp/share/users/kevhu/miniconda3/envs/arriba_env"
 
-    publishDir "${params.outdir}/rna_processing/arriba/${meta.id}", mode: 'copy'
+    publishDir path: { "${params.outdir}/rna_processing/arriba/${meta.id}" }, mode: 'copy'
 
     input:
     tuple val(meta), path(bam), path(bai)

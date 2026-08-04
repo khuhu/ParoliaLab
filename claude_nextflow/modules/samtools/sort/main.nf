@@ -8,7 +8,7 @@ process SAMTOOLS_SORT {
     tag "${meta.id}"
     label 'process_high'
 
-    publishDir "${params.outdir}/rna_processing/sorted/${meta.id}", mode: 'copy',
+    publishDir path: { "${params.outdir}/rna_processing/sorted/${meta.id}" }, mode: 'copy',
         saveAs: { filename ->
             // Only publish the sorted BAM if it's a final intermediate;
             // downstream steps will overwrite with their own publishDir.

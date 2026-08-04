@@ -11,7 +11,7 @@ process STAR_FUSION {
     tag "${meta.id}"
     label 'process_high_memory'
 
-    publishDir "${params.outdir}/rna_processing/star_fusion/${meta.id}", mode: 'copy'
+    publishDir path: { "${params.outdir}/rna_processing/star_fusion/${meta.id}" }, mode: 'copy'
 
     input:
     tuple val(meta), path(chimeric_junction)

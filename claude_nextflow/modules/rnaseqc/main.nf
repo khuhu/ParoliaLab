@@ -11,7 +11,7 @@ process RNASEQC {
     tag "${meta.id}"
     label 'process_low'
 
-    publishDir "${params.outdir}/rna_processing/rnaseqc/${meta.id}", mode: 'copy',
+    publishDir path: { "${params.outdir}/rna_processing/rnaseqc/${meta.id}" }, mode: 'copy',
         saveAs: { filename ->
             // Publish all RNA-SeQC output files
             filename.startsWith("${meta.id}/") ||
