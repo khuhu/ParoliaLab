@@ -172,6 +172,23 @@ The `{sample}.gene_reads.gct` files from RNA-SeQC can be used directly with:
 - **GTEx analysis pipeline** (these parameters were tuned for GTEx compatibility)
 - **RSEM** with the `Aligned.toTranscriptome.out.bam` for isoform-level quantification
 
+## Adding New Samples / Running a Subset
+
+New samples don't need to be merged into the existing samplesheet or copied into the existing FASTQ directory. Since the samplesheet path and FASTQ directory are just parameters, point them at a separate subset samplesheet and `outdir` to run only the new samples, without touching or rerunning anything already completed:
+
+```bash
+nextflow run main.nf -params-file params.yaml \
+  --rna_samplesheet /path/to/NewSubsetSamplesheet.txt \
+  --rna_fastq_dir /path/to/raw/fastqs \
+  --outdir /path/to/new_outdir
+```
+
+- `rna_samplesheet` only needs the `Library ID` column populated for the new samples (see main README).
+- `rna_fastq_dir` is globbed per-sample by `MERGE_LANES` (`main.nf`) — it accepts either a single pre-merged file (`mctp_<id>_R1.fq.gz`) or multiple per-lane files (`mctp_<id>_L00X_1.fq.gz`), and concatenates whatever it finds into one R1/R2 pair per sample.
+- A separate `outdir` means the new run is fully isolated — no `-resume` interaction with the existing pipeline output.
+
+**Note for the future**: if the raw FASTQs already live on the cluster in a collaborator's directory (e.g. `eleanoyo`'s), point `--rna_fastq_dir` directly at that path instead of `cp`-ing the files into a local directory first. Copying wastes disk space for no benefit — `MERGE_LANES` reads files in place and only writes the merged output.
+
 ## Adjusting for Library Type
 
 If your libraries are **unstranded** (e.g., older protocols):

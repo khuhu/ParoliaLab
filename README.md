@@ -10,12 +10,14 @@ Claude-assisted conversion of lab shell scripts into Nextflow DSL2 pipelines. Bu
 
 Based on the Broad Institute pipeline, aligned with CCLE processing standards.
 
-**Steps:** STAR (two-pass) → Samtools sort → Picard MarkDuplicates → RNA-SeQC → STAR-Fusion → Arriba
+**Steps:** Merge lanes → STAR (two-pass) → Samtools sort → Picard MarkDuplicates → RNA-SeQC → STAR-Fusion → Arriba
 
 **Run:**
 ```bash
 nextflow run claude_nextflow/main.nf -params-file claude_nextflow/params.yaml
 ```
+
+**Running a subset of new samples** — point `--rna_samplesheet`, `--rna_fastq_dir`, and `--outdir` at a separate subset samplesheet/FASTQ dir/output dir; this leaves the existing run's cache and output untouched (see `claude_nextflow/docs/README_rna_processing.md`). If the raw FASTQs already live in a collaborator's directory, point `--rna_fastq_dir` directly at it instead of copying files locally — `MERGE_LANES` reads them in place.
 
 ---
 
