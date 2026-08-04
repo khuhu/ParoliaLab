@@ -14,7 +14,9 @@ gtf: /mctp/paroliaAnalysis/kevhu/genomes/hg38_rna/gencode.v39.GRCh38.ERCC.genes.
 rna_samplesheet: /mctp/paroliaAnalysis/kevhu/misc/RNAseqLibraries_EwingSarcoma.txt
 
 # ── FASTQ input directory ──────────────────────────────────────────────────────
-# Files expected as: mctp_<Library ID>_R1.fq.gz / mctp_<Library ID>_R2.fq.gz
+# Any file containing the Library ID is picked up and merged (MERGE_LANES):
+# single merged files (mctp_<Library ID>_R1.fq.gz) or multiple per-lane files
+# (mctp_<Library ID>_L00X_1.fq.gz) are both supported.
 rna_fastq_dir: /mctp/paroliaAnalysis/kevhu/EwingsSarcoma/mergedFastq
 
 # ── Output root ────────────────────────────────────────────────────────────────
