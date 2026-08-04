@@ -11,6 +11,8 @@ process STAR_FUSION {
     tag "${meta.id}"
     label 'process_high_memory'
 
+    conda "/mctp/share/users/kevhu/miniconda3/envs/star_fusion"
+
     publishDir path: { "${params.outdir}/rna_processing/star_fusion/${meta.id}" }, mode: 'copy'
 
     input:
