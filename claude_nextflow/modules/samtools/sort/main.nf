@@ -8,6 +8,8 @@ process SAMTOOLS_SORT {
     tag "${meta.id}"
     label 'process_high'
 
+    conda "/mctp/share/users/kevhu/miniconda3/envs/rnaseq_flow"
+
     publishDir path: { "${params.outdir}/rna_processing/sorted/${meta.id}" }, mode: 'copy',
         saveAs: { filename ->
             // Only publish the sorted BAM if it's a final intermediate;

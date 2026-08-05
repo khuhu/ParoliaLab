@@ -9,6 +9,8 @@ process PICARD_MARKDUPLICATES {
     tag "${meta.id}"
     label 'process_high_memory'
 
+    conda "/mctp/share/users/kevhu/miniconda3/envs/rnaseq_flow"
+
     publishDir path: { "${params.outdir}/rna_processing/markdup/${meta.id}" }, mode: 'copy',
         saveAs: { filename ->
             filename.endsWith('.dedup.bam') ||

@@ -11,6 +11,8 @@ process RNASEQC {
     tag "${meta.id}"
     label 'process_low'
 
+    conda "/mctp/share/users/kevhu/miniconda3/envs/rnaseq_flow"
+
     publishDir path: { "${params.outdir}/rna_processing/rnaseqc/${meta.id}" }, mode: 'copy',
         saveAs: { filename ->
             // Publish all RNA-SeQC output files
